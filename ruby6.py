@@ -3,7 +3,5 @@ class int(int):
     for times in range(0,self):
       callback()
 
-def print_10():
-  print('Hello World')
-
-int(10).times(print_10)
+print(type(int(10))) # <class '__main__.int'>
+print(type(10))      # <class 'int'>
