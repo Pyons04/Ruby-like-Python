@@ -1,7 +1,13 @@
 # Ruby-like-Python
 
 #### 趣旨
-PythonでRubyライクな文法を利用するためのラッパーの自作を通じて、Pythonのメタプログラミングについての理解を深める
+PythonでRubyライクな文法を利用するためのラッパーの自作を通じて、Pythonメタプログラミングの理解を深める
+
+#### 目次
+* [Integer::times](#Integer::times)
+* [Enumerable::map](#Enumerable::map)
+* [Enumerable::each_with_index](#Enumerable::each_with_index)
+* [Module::class_eval](#Module::class_eval)
 
 ## Integer::times
 
@@ -26,6 +32,8 @@ def print_10():
 
 int(10).times(print_10)
 ```
+```関数ポインタ```（メソッド名にカッコを付けず、関数オブジェクトとして渡す）を使うのがミソ。
+
 実行結果
 ```
 PS C:\Users\broad\OneDrive\products\Ruby-like-Python> python ruby2.py
@@ -90,6 +98,31 @@ print(array.maps(method))
 
 ## Enumerable::each_with_index
 
+Rubyの以下のような挙動をPythonで実装して見る
+
+```ruby
+array = [1,2,3,4,5,6,7,8,9]
+
+array.each_with_index do |num, index|
+  puts "Index: #{index} #{num*num}"
+end
+```
+
+実行結果はこんな感じ
+```shell
+[pyons@LAPTOP-SF87NLCB Ruby-like-Python (master)]$ ruby ruby.rb
+Index: 0 1
+Index: 1 4
+Index: 2 9
+Index: 3 16
+Index: 4 25
+Index: 5 36
+Index: 6 49
+Index: 7 64
+Index: 8 81
+```
+Pythonでの実装について検討する。
+
 ```each_with_index```と同じような処理はPythonならfor文だと比較的簡単に出来てしまう。
 以下for文を用いた実装
 
@@ -152,7 +185,9 @@ Index:8 81
 
 こっちの方が期待通りな感じ。
 
-## Modele::define_method
+## Module::class_eval
+
+番外編。
 
 これはPythonで標準についているメソッドをそのまま利用するだけ。ほとんどRubyと同じように操作できる。
 
